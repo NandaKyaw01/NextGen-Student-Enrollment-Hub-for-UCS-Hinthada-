@@ -63,6 +63,7 @@ class FresherRegistrationController extends Controller
             'name' => $fresher->name,
             'email' => $request->email,
             'uni_id_no' => $request->uni_id_no,
+            'image' => 'default.png',
             'password' => 'P@ssw0rd',
             'uuid' => Str::uuid()
         ]);

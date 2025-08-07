@@ -196,7 +196,7 @@
     <section class="footer_section" style="background-color: rgb(14, 98, 131)">
       <div class="container">
         <p class="text-white">
-          &copy; <span id="displayYear"></span> All Rights Reserved By Soe ZayYarKyaw
+          &copy; <span id="displayYear"></span> All Rights Reserved By Aye Myat Mon
         </p>
       </div>
     </section>

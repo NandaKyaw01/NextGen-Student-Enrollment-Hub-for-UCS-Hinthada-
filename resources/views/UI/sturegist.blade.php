@@ -119,9 +119,14 @@
 
                                     <div class="col-md-4">
                                         <div class="form-group">
-                                            <label>ပြီးခဲ့သောနှစ်အောင်လက်မှတ် (ပုံ)</label>
-                                            <input name="last_year_pass_document_screenshot" value="{{ old('last_year_pass_document_screenshot') }}" class="form-control" type="file" required>
-                                            @error('last_year_pass_document_screenshot')<div class="text-danger">{{ $message }}</div>@enderror
+                                            <label>ပြီးခဲ့သောနှစ် </label>
+                                            <select name="last_academic_year" class="form-control" id="last_academic_year" required>
+                                                <option value="">-- သင်တန်းနှစ် --</option>
+                                                @foreach($years as $year)
+                                                    <option value="{{ $year->id }}" {{ old('last_academic_year') == $year ? 'selected' : '' }}>{{ $year->name }}</option>
+                                                @endforeach
+                                            </select>
+                                            @error('last_academic_year')<div class="text-danger">{{ $message }}</div>@enderror
                                         </div>
                                     </div>
 
@@ -403,7 +408,7 @@
                                     <div class="col-sm-12 text-center">
                                         <div class="checkbox">
                                             <label class="mt-2">
-                                                <input type="checkbox" name="agree_rules" required> အထက်ပါလိုက်နာရမည့် စည်းကမ်းချက်များကို လိုက်နာဆောင်ရွက်ပါမည်ဟု ဝန်ခံကတိပြပါသည်။
+                                                <input type="checkbox" name="agree_rules" required> အထက်ပါလိုက်နာရမည့် စည်းကမ်းချက်များကို လိုက်နာဆောင်ရွက်ပါမည်ဟု ဝန်ခံကတိပြုပါသည်။
                                             </label>
                                             @error('agree_rules')<div class="text-danger">{{ $message }}</div>@enderror
                                         </div>

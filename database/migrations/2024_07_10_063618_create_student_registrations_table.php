@@ -23,7 +23,7 @@ return new class extends Migration
 
             $table->string('matriculation_result');
             $table->string('matriculation_certificate');
-            $table->string('last_year_pass_document_screenshot');
+            $table->string('last_academic_year');
             $table->string('reg_email');
             $table->string('phone');
             $table->date('dob');

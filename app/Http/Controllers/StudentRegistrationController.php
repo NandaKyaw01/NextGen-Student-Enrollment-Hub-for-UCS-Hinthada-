@@ -9,9 +9,14 @@ use App\Models\AcademicYear;
 use Illuminate\Http\Request;
 use PhpOffice\PhpWord\PhpWord;
 use PhpOffice\PhpWord\IOFactory;
+use App\Mail\FresherAcceptedMail;
 use App\Models\StudentRegistration;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Mail;
 use App\Http\Requests\StudentRegistrationRequest;
+use App\Mail\RegistrationSuccessMail;
 
 class StudentRegistrationController extends Controller
 {
@@ -28,7 +33,10 @@ class StudentRegistrationController extends Controller
 
 
 
-            $academicYear = AcademicYear::findOrFail($attributes['academic_year_id']);
+            $academicYear = AcademicYear::findOrFail($attributes['last_academic_year']);
+
+
+
 
             //dd(($academicYear->name == 'ပထမနှစ် ပထမနှစ်ဝက်' || $academicYear->name == 'ပထမနှစ် ဒုတိယနှစ်ဝက်') && $attributes['major'] !== 'CST');
 
@@ -38,11 +46,34 @@ class StudentRegistrationController extends Controller
             //     return redirect()->back()->with('error', 'ဤနှစ်အတွက် CS သို့မဟုတ် CT ကိုသာရွေးချယ်နိုင်ပါသည်။');
             // }
 
+
+
+
+            $search = Auth::user()->name;
+
+            $response = Http::get('https://student-grading-system-mauve.vercel.app/api/results-by-semester', [
+                'search' => $search,
+                'class' => $academicYear->ename,
+                'semester' => $academicYear->esemester,
+            ]);
+
+            $res = $response->json()['results'][0] ?? null;
+
+            if ($res) {
+                if ($res['status'] == 'FAIL' || $res['status'] == 'INCOMPLETE') {
+                    return back()
+                        ->with('error', 'You are "Failed" in your last academic exam. Son you can\'t register for this academic year.');
+                }
+            } else {
+                return back()
+                    ->with('error', 'No results found for your last academic exam.');
+            }
+
             $path = 'images/' . Auth::user()->uuid . '/';
             $registration['profile'] = File::upload($request->file('profile'), $path);
             $registration['matriculation_result'] = File::upload($request->file('matriculation_result'), $path);
             $registration['matriculation_certificate'] = File::upload($request->file('matriculation_certificate'), $path);
-            $registration['last_year_pass_document_screenshot'] = File::upload($request->file('last_year_pass_document_screenshot'), $path);
+            $registration['last_academic_year'] = $attributes['last_academic_year'];
             $registration['nrc_student_front'] = File::upload($request->file('nrc_student_front'), $path);
             $registration['nrc_student_back'] = File::upload($request->file('nrc_student_back'), $path);
             $registration['nrc_father_front'] = File::upload($request->file('nrc_father_front'), $path);
@@ -81,7 +112,10 @@ class StudentRegistrationController extends Controller
             auth()->user()->update([
                 'image' => $registration['profile'],
             ]);
-            StudentRegistration::create($registration);
+
+            $user = Auth::user();
+
+            $studentReg = StudentRegistration::create($registration);
 
             return redirect()->route('ui.home')->with('success', 'Student Registration Form submitted successfully!');
         }
@@ -536,6 +570,7 @@ class StudentRegistrationController extends Controller
     public function regAccept(StudentRegistration $studentRegistration)
     {
         $studentRegistration->update(['status' => 'confirm']);
+        Mail::to($studentRegistration->reg_email)->send(new RegistrationSuccessMail($studentRegistration));
         return back()->with('success', 'ကျောင်းအပ် လက်ခံလိုက်ပါပြီ');
     }
 
@@ -732,14 +767,14 @@ class StudentRegistrationController extends Controller
 
                 $rollNumber = $registration->roll_no;
                 if ($registration->specialist === 'computer_science') {
-                    $formattedRollNumber = "CS-$rollNumber";
+                    $formattedRollNumber = "$rollNumber";
                 } elseif ($registration->specialist === 'computer_technology') {
-                    $formattedRollNumber = "CT-$rollNumber";
+                    $formattedRollNumber = "$rollNumber";
                 } else {
-                    $formattedRollNumber = "CST-$rollNumber";
+                    $formattedRollNumber = "$rollNumber";
                 }
                 $table->addCell(4000)->addText($formattedRollNumber);
-                $table->addCell(6000)->addText($registration->student_phone);
+                $table->addCell(6000)->addText($registration->phone);
                 $table->addCell(8000)->addText($registration->created_at->format('d-m-Y'));
                 $table->addCell(8000)->addText($registration->status === "pending" ? "စောင့်ဆိုင်းနေသည်" : ($registration->status === "confirm" ? "ကျောင်းအပ်လက်ခံထားသည်" : "ပြန်ပြင်ခိုင်းထားသည်"));
             }

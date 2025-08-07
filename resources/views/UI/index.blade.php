@@ -14,7 +14,7 @@
                     <h2 style="width:auto; font-size: 3rem; text-shadow: 2px 2px 4px rgba(82, 87, 155, 0.5);font-family: 'Arial', sans-serif;">Student Enrollment System For University of Computer Studies Hinthada</h2>
                     <p>ကျောင်းသားများ လွယ်ကူလျှင်မြန်စွာ ကျောင်းအပ်ရန် ရည်ရွယ် စီစဉ်ထားပါသည်.</p>
                   <div class="btn-box">
-                    <a href="{{route('stu.reg')}}" class="btn1">ကျောင်းအပ်မည်</a>
+                    <a href="{{route('login')}}" class="btn1">ကျောင်းအပ်မည်</a>
                   </div>
                 </div>
               </div>

@@ -85,7 +85,6 @@
 
                                     <th  style="font-size: 1.3rem">အခြေအနေ</th>
                                     <th style="font-size: 1.3rem">View</th>
-                                    <th style="font-size: 1.3rem">ရပ်နားရန်</th>
                                 </tr>
                             </thead>
                             <tbody class="border-success">
@@ -121,9 +120,6 @@
                                         </td>
                                         <td><a href="{{ route('admin.stu.reg.detail', $reg->id) }}"><i class="fas fa-eye"
                                                     style="color: azure"></i></a></td>
-                                        <td><a href="{{ route('admin.stu.reg.delete', $reg->id) }}"
-                                                onclick="return confirm('ရပ်နားရန်သေချာလား?');"><i class="fas fa-ban"
-                                                    style="color: red"></i></a></td>
                                     </tr>
                                 @endforeach
                             </tbody>

@@ -98,7 +98,7 @@
             </table>
 
             {{-- NRC Photos Section --}}
-            <h5 class="text-center mt-4 pcolor">Parent NRC Photos</h5>
+            <h5 class="text-center mt-4 pcolor">Submitted Document</h5>
             <div class="row text-center">
                 <div class="col-md-3 mb-3">
                     <label class="form-label">Student NRC Front</label>

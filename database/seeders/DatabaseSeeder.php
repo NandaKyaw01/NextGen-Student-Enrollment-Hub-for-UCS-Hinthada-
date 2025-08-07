@@ -24,12 +24,12 @@ class DatabaseSeeder extends Seeder
         ]);
 
         User::create([
-            'name' => 'SoeZayYarKyaw',
+            'name' => 'Admin',
             'uuid' => Str::uuid(),
             'email' => 'admin@ucsh.edu.mm',
             'role' => 'admin',
             'password' => 'P@ssw0rd',
-            'image' => 'default.jpg',
+            'image' => 'logo.jpg',
             'uni_Id_no' => 'CU(Hinthada)' . rand(0000, 9999),
         ]);
 
@@ -40,7 +40,7 @@ class DatabaseSeeder extends Seeder
             'role' => 'user',
             //'sch_no'=>"၀၇၆၈၈၉",
             'password' => 'P@ssw0rd',
-            'image' => 'default.jpg',
+            'image' => 'logo.jpg',
             'uni_Id_no' => 'CU(Hinthada)' . rand(0000, 9999),
         ]);
         User::create([
@@ -184,68 +184,99 @@ class DatabaseSeeder extends Seeder
             'uni_Id_no' => 'CU(Hinthada)' . rand(0000, 9999),
         ]);
 
+        User::create([
+            'name' => 'Student-9',
+            'uuid' => Str::uuid(),
+            'email' => 'student_9@ucsh.edu.mm',
+            'role' => 'user',
+            //'sch_no'=>"၀၇၆၃၂၉",
+            'password' => 'P@ssw0rd',
+            'image' => 'logo.jpg',
+            'uni_Id_no' => 'CU(Hinthada)' . rand(0000, 9999),
+        ]);
+
+        User::create([
+            'name' => 'Student-2',
+            'uuid' => Str::uuid(),
+            'email' => 'student_2@ucsh.edu.mm',
+            'role' => 'user',
+            //'sch_no'=>"၀၇၆၃၂၉",
+            'password' => 'P@ssw0rd',
+            'image' => 'logo.jpg',
+            'uni_Id_no' => 'CU(Hinthada)' . rand(0000, 9999),
+        ]);
 
         AcademicYear::create([
             "name" => "ပထမနှစ် ပထမနှစ်ဝက်",
-            "enrollment" => 35000
-
+            "enrollment" => 35000,
+            "ename" => "First Year",
+            "esemester" => "First Semester"
         ]);
 
         AcademicYear::create([
             "name" => "ပထမနှစ် ဒုတိယနှစ်ဝက်",
-            "enrollment" => 0
-
+            "enrollment" => 0,
+            "ename" => "First Year",
+            "esemester" => "Second Semester"
         ]);
 
         AcademicYear::create([
             "name" => "ဒုတိယနှစ် ပထမနှစ်ဝက်",
-            "enrollment" => 38000
-
+            "enrollment" => 38000,
+            "ename" => "Second Year",
+            "esemester" => "First Semester"
         ]);
 
         AcademicYear::create([
             "name" => "ဒုတိယနှစ် ဒုတိယနှစ်ဝက်",
-            "enrollment" => 0
-
+            "enrollment" => 0,
+            "ename" => "Second Year",
+            "esemester" => "Second Semester"
         ]);
 
         AcademicYear::create([
             "name" => "တတိယနှစ် ပထမနှစ်ဝက်",
-            "enrollment" => 40000
-
+            "enrollment" => 40000,
+            "ename" => "Third Year",
+            "esemester" => "First Semester"
         ]);
 
         AcademicYear::create([
             "name" => "တတိယနှစ် ဒုတိယနှစ်ဝက်",
-            "enrollment" => 0
-
+            "enrollment" => 0,
+            "ename" => "Third Year",
+            "esemester" => "Second Semester"
         ]);
         AcademicYear::create([
             "name" => "စတုတ္ထနှစ် ပထမနှစ်ဝက်",
-            "enrollment" => 45000
-
+            "enrollment" => 45000,
+            "ename" => "Fourth Year",
+            "esemester" => "First Semester"
         ]);
 
         AcademicYear::create([
             "name" => "စတုတ္ထနှစ် ဒုတိယနှစ်ဝက်",
-            "enrollment" => 0
-
+            "enrollment" => 0,
+            "ename" => "Fourth Year",
+            "esemester" => "Second Semester"
         ]);
 
         AcademicYear::create([
             "name" => "ပဉ္စမနှစ် ပထမနှစ်ဝက်",
-            "enrollment" => 55000
-
+            "enrollment" => 55000,
+            "ename" => "Fifth Year",
+            "esemester" => "First Semester"
         ]);
         AcademicYear::create([
             "name" => "ပဉ္စမနှစ် ဒုတိယနှစ်ဝက်",
-            "enrollment" => 0
-
+            "enrollment" => 0,
+            "ename" => "Fifth Year",
+            "esemester" => "Second Semester"
         ]);
         Notice::create([
             "image" => "logo.png",
-            "text" => "ကွန်ပျူတာတက္ကသိုလ်(ဟင်္သာတ)၂၀၂၃-၂၀၂၄ ပညာသင်နှစ်ပထမနှစ်၊ ဒုတိယနှစ်၊ တတိယနှစ်၊ စတုတ္ထနှစ်နှင့် D.C.Sc.(ပထမနှစ်ဝက်နှင့် ဒုတိယနှစ်ဝက်)သင်တန်းများအားလုံးကျောင်းအပ်စတင်လက်ခံမည့်ရက်		-၂၇.၅.၂၀၂၄ (၂ပတ်အတွင်းကျောင်းအပ်ရန်)
-            ကျောင်းစတင်ဖွင့်လှစ်မည့်ရက်	-၃.၆.၂၀၂၄"
+            "text" => "ကွန်ပျူတာတက္ကသိုလ်(ဟင်္သာတ)၂၀၂၄-၂၀၂၅ ပညာသင်နှစ်ပထမနှစ်၊ ဒုတိယနှစ်၊ တတိယနှစ်၊ စတုတ္ထနှစ်နှင့် D.C.Sc.(ပထမနှစ်ဝက်နှင့် ဒုတိယနှစ်ဝက်)သင်တန်းများအားလုံးကျောင်းအပ်စတင်လက်ခံမည့်ရက်		-၂၇.၅.၂၀၂၅ (၂ပတ်အတွင်းကျောင်းအပ်ရန်)
+            ကျောင်းစတင်ဖွင့်လှစ်မည့်ရက်	-၃.၆.၂၀၂၅"
         ]);
         Notice::create([
             "image" => "logo.png",
@@ -268,7 +299,7 @@ class DatabaseSeeder extends Seeder
         ]);
         Notice::create([
             "image" => "logo.png",
-            "text" => "Web Development Training သင်တန်းအား(၁.၈.၂၀၂၄)ရက်နေ့မှစ၍ညနေ(၄း၀၀ )နာရီမှ(၅း၃၀)နာရီအထိဖွင့်လှစ်မည်ဖြစ်ပါသဖြင့်သင်တန်းရေးရာဌာနသို့( ၃၁.၇.၂၀၂၄)ရက်နေ့နောက်ဆုံးထား၍စာရင်းပေးသွင်းနိုင်ပါသည်"
+            "text" => "Web Development Training သင်တန်းအား(၁.၈.၂၀၂၅)ရက်နေ့မှစ၍ညနေ(၄း၀၀ )နာရီမှ(၅း၃၀)နာရီအထိဖွင့်လှစ်မည်ဖြစ်ပါသဖြင့်သင်တန်းရေးရာဌာနသို့( ၃၁.၇.၂၀၂၅)ရက်နေ့နောက်ဆုံးထား၍စာရင်းပေးသွင်းနိုင်ပါသည်"
         ]);
     }
 }

@@ -34,7 +34,7 @@ class StudentRegistrationRequest extends FormRequest
             // STEP 2
             'matriculation_result' => 'required_if:step,2|image|mimes:jpg,jpeg,png|max:2048',
             'matriculation_certificate' => 'required_if:step,2|image|mimes:jpg,jpeg,png|max:2048',
-            'last_year_pass_document_screenshot' => 'required_if:step,2|image|mimes:jpg,jpeg,png|max:2048',
+            'last_academic_year' => 'required_if:step,2|string',
             'reg_email' => 'required_if:step,2|email',
             'phone' => ['required_if:step,2', 'string', 'regex:/^09(2|4|6|7|8|9)[0-9]{7,9}$/'],
             'dob' => 'required_if:step,2|date',

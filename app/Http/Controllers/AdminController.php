@@ -136,6 +136,15 @@ class AdminController extends Controller
             });
         }
 
+
+        if ($request->has('is_register')) {
+            if ($request->is_register == '1') {
+                $students->whereHas('studentRegistrations');
+            } else if ($request->is_register == '0') {
+                $students->whereDoesntHave('studentRegistrations');
+            }
+        }
+
         // Final result
         $students = $students->latest()->paginate(10);
 

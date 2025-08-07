@@ -42,7 +42,6 @@ class StopStudentExport implements FromCollection, WithMapping, WithHeadings, Wi
             $drawing->setDescription('User Image');
 
             $imagePath = public_path(File::GetStudentDataPath($user) . $user->image);
-            dd($imagePath, file_exists($imagePath));
 
             if (file_exists($imagePath)) {
                 $drawing->setPath($imagePath);
